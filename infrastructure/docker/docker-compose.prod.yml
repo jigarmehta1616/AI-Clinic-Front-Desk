@@ -1,0 +1,92 @@
+# Production stack on one host (AWS Mumbai, ap-south-1). PostgreSQL is external (RDS) — set DATABASE_URL /
+# MIGRATION_DATABASE_URL to it. Run from the repo root:
+#   docker compose -f infrastructure/docker/docker-compose.prod.yml --env-file /etc/clinicdesk/prod.env up -d --build
+# Nothing here is a secret; every credential comes from the env file, which never enters git.
+name: clinicdesk-prod
+
+x-app-env: &app-env
+  ENV: ${ENV:-production}
+  DATABASE_URL: ${DATABASE_URL:?set DATABASE_URL}
+  REDIS_URL: redis://redis:6379/0
+  JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+  JWT_KID: ${JWT_KID:-k1}
+  OTP_PEPPER: ${OTP_PEPPER:?set OTP_PEPPER}
+  OTP_PROVIDER: ${OTP_PROVIDER:?set OTP_PROVIDER}
+  CORS_ORIGINS: https://${SERVER_NAME:?set SERVER_NAME}
+  PUBLIC_BASE_URL: https://${SERVER_NAME}
+  PRIVACY_NOTICE_URL: ${PRIVACY_NOTICE_URL:?set PRIVACY_NOTICE_URL}
+  WHATSAPP_PROVIDER: ${WHATSAPP_PROVIDER:-cloud}
+  WHATSAPP_SHARED_PHONE_NUMBER_ID: ${WHATSAPP_SHARED_PHONE_NUMBER_ID:-}
+  WHATSAPP_APP_SECRET: ${WHATSAPP_APP_SECRET:-}
+  WHATSAPP_VERIFY_TOKEN: ${WHATSAPP_VERIFY_TOKEN:-}
+  WHATSAPP_ACCESS_TOKEN: ${WHATSAPP_ACCESS_TOKEN:-}
+  EXOTEL_WEBHOOK_SECRET: ${EXOTEL_WEBHOOK_SECRET:-}
+  LLM_PROVIDER: ${LLM_PROVIDER:-none}
+  LLM_API_KEY: ${LLM_API_KEY:-}
+  SENTRY_DSN: ${SENTRY_DSN:-}
+
+x-logging: &logging
+  driver: json-file
+  options: { max-size: "20m", max-file: "5" }
+
+services:
+  migrate:
+    build: { context: ../.., dockerfile: infrastructure/docker/Dockerfile.api }
+    image: clinicdesk-api:${IMAGE_TAG:-local}
+    command: ["alembic", "-c", "alembic.ini", "upgrade", "head"]
+    environment:
+      <<: *app-env
+      MIGRATION_DATABASE_URL: ${MIGRATION_DATABASE_URL:?set MIGRATION_DATABASE_URL}
+    restart: "no"
+    logging: *logging
+
+  api:
+    image: clinicdesk-api:${IMAGE_TAG:-local}
+    environment: *app-env
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    logging: *logging
+
+  worker:
+    image: clinicdesk-api:${IMAGE_TAG:-local}
+    command: ["arq", "clinicdesk.worker.WorkerSettings"]
+    environment: *app-env
+    healthcheck: { disable: true }
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    logging: *logging
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    volumes: [redisdata:/data]
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 5s, retries: 20 }
+    restart: unless-stopped
+    logging: *logging
+
+  web:
+    build: { context: ../.., dockerfile: infrastructure/docker/Dockerfile.web }
+    image: clinicdesk-web:${IMAGE_TAG:-local}
+    environment:
+      SERVER_NAME: ${SERVER_NAME}
+    ports: ["${HTTP_PORT:-80}:80", "${HTTPS_PORT:-443}:443"]
+    volumes:
+      - ${TLS_CERT_DIR:?set TLS_CERT_DIR (fullchain.pem + privkey.pem)}:/etc/nginx/certs:ro
+    depends_on:
+      api: { condition: service_healthy }
+    restart: unless-stopped
+    security_opt: ["no-new-privileges:true"]
+    logging: *logging
+
+volumes:
+  redisdata:

@@ -1,0 +1,19 @@
+# Keep build contexts small and secret-free.
+**/.env
+**/*.env
+**/*.env.*
+!**/.env.example
+.git
+.venv
+**/node_modules
+**/dist
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/*.egg-info
+**/tsconfig.tsbuildinfo
+.tmp
+.claude
+docs
+infrastructure/certs

@@ -1,0 +1,6946 @@
+{
+ "components": {
+  "schemas": {
+   "AdminClinicOut": {
+    "properties": {
+     "created_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Created At"
+     },
+     "days_left": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Days Left"
+     },
+     "doctors": {
+      "title": "Doctors",
+      "type": "integer"
+     },
+     "doctors_level": {
+      "enum": [
+       "ok",
+       "warning",
+       "exceeded"
+      ],
+      "title": "Doctors Level",
+      "type": "string"
+     },
+     "doctors_limit": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctors Limit"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "messages_level": {
+      "enum": [
+       "ok",
+       "warning",
+       "exceeded"
+      ],
+      "title": "Messages Level",
+      "type": "string"
+     },
+     "messages_limit": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Messages Limit"
+     },
+     "messages_this_month": {
+      "title": "Messages This Month",
+      "type": "integer"
+     },
+     "name": {
+      "default": "",
+      "title": "Name",
+      "type": "string"
+     },
+     "patients": {
+      "title": "Patients",
+      "type": "integer"
+     },
+     "plan": {
+      "title": "Plan",
+      "type": "string"
+     },
+     "slug": {
+      "default": "",
+      "title": "Slug",
+      "type": "string"
+     },
+     "specialty": {
+      "default": "",
+      "title": "Specialty",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "trial_ends_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trial Ends At"
+     }
+    },
+    "required": [
+     "plan",
+     "status",
+     "trial_ends_at",
+     "days_left",
+     "messages_this_month",
+     "messages_limit",
+     "messages_level",
+     "doctors",
+     "doctors_limit",
+     "doctors_level",
+     "patients",
+     "id"
+    ],
+    "title": "AdminClinicOut",
+    "type": "object"
+   },
+   "AppointmentCounts": {
+    "properties": {
+     "arrived": {
+      "title": "Arrived",
+      "type": "integer"
+     },
+     "booked": {
+      "title": "Booked",
+      "type": "integer"
+     },
+     "cancelled": {
+      "title": "Cancelled",
+      "type": "integer"
+     },
+     "completed": {
+      "title": "Completed",
+      "type": "integer"
+     },
+     "confirmed": {
+      "title": "Confirmed",
+      "type": "integer"
+     },
+     "no_show": {
+      "title": "No Show",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "booked",
+     "confirmed",
+     "arrived",
+     "completed",
+     "no_show",
+     "cancelled"
+    ],
+    "title": "AppointmentCounts",
+    "type": "object"
+   },
+   "AppointmentOut": {
+    "properties": {
+     "arrived_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Arrived At"
+     },
+     "cancelled_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cancelled At"
+     },
+     "completed_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Completed At"
+     },
+     "doctor_id": {
+      "format": "uuid",
+      "title": "Doctor Id",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "needs_reschedule": {
+      "title": "Needs Reschedule",
+      "type": "boolean"
+     },
+     "patient_id": {
+      "format": "uuid",
+      "title": "Patient Id",
+      "type": "string"
+     },
+     "patient_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Name"
+     },
+     "patient_phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Phone"
+     },
+     "rescheduled_from_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Rescheduled From Id"
+     },
+     "slot_end": {
+      "format": "date-time",
+      "title": "Slot End",
+      "type": "string"
+     },
+     "slot_start": {
+      "format": "date-time",
+      "title": "Slot Start",
+      "type": "string"
+     },
+     "source": {
+      "title": "Source",
+      "type": "string"
+     },
+     "source_ref_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source Ref Id"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "visit_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Visit Type"
+     }
+    },
+    "required": [
+     "id",
+     "doctor_id",
+     "patient_id",
+     "slot_start",
+     "slot_end",
+     "status",
+     "source",
+     "source_ref_id",
+     "rescheduled_from_id",
+     "needs_reschedule",
+     "arrived_at",
+     "completed_at",
+     "cancelled_at"
+    ],
+    "title": "AppointmentOut",
+    "type": "object"
+   },
+   "AuditOut": {
+    "properties": {
+     "action": {
+      "title": "Action",
+      "type": "string"
+     },
+     "actor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Actor Id"
+     },
+     "actor_type": {
+      "title": "Actor Type",
+      "type": "string"
+     },
+     "after": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "After"
+     },
+     "at": {
+      "format": "date-time",
+      "title": "At",
+      "type": "string"
+     },
+     "before": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Before"
+     },
+     "channel": {
+      "title": "Channel",
+      "type": "string"
+     },
+     "entity_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Entity Id"
+     },
+     "entity_type": {
+      "title": "Entity Type",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "actor_type",
+     "actor_id",
+     "channel",
+     "action",
+     "entity_type",
+     "entity_id",
+     "before",
+     "after",
+     "at"
+    ],
+    "title": "AuditOut",
+    "type": "object"
+   },
+   "BookIn": {
+    "additionalProperties": false,
+    "properties": {
+     "doctor_id": {
+      "format": "uuid",
+      "title": "Doctor Id",
+      "type": "string"
+     },
+     "patient_id": {
+      "format": "uuid",
+      "title": "Patient Id",
+      "type": "string"
+     },
+     "slot_start": {
+      "format": "date-time",
+      "title": "Slot Start",
+      "type": "string"
+     },
+     "source": {
+      "default": "staff",
+      "enum": [
+       "staff",
+       "missed_call",
+       "recall",
+       "noshow_rebook"
+      ],
+      "title": "Source",
+      "type": "string"
+     },
+     "source_ref_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source Ref Id"
+     },
+     "visit_type": {
+      "anyOf": [
+       {
+        "pattern": "^[a-z_]{2,40}$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Visit Type"
+     }
+    },
+    "required": [
+     "doctor_id",
+     "patient_id",
+     "slot_start"
+    ],
+    "title": "BookIn",
+    "type": "object"
+   },
+   "CancelIn": {
+    "additionalProperties": false,
+    "properties": {
+     "reason": {
+      "anyOf": [
+       {
+        "maxLength": 200,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reason"
+     },
+     "staff_override": {
+      "default": false,
+      "title": "Staff Override",
+      "type": "boolean"
+     }
+    },
+    "title": "CancelIn",
+    "type": "object"
+   },
+   "ClinicCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "anyOf": [
+       {
+        "maxLength": 500,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Address"
+     },
+     "default_fee_paise": {
+      "default": 0,
+      "maximum": 10000000.0,
+      "minimum": 0.0,
+      "title": "Default Fee Paise",
+      "type": "integer"
+     },
+     "languages": {
+      "items": {
+       "enum": [
+        "gu",
+        "hi",
+        "en"
+       ],
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Languages",
+      "type": "array"
+     },
+     "map_url": {
+      "anyOf": [
+       {
+        "maxLength": 500,
+        "pattern": "^https://",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Map Url"
+     },
+     "name": {
+      "maxLength": 160,
+      "minLength": 2,
+      "title": "Name",
+      "type": "string"
+     },
+     "phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Phone"
+     },
+     "slug": {
+      "description": "Clinic code patients type on a shared number",
+      "pattern": "^[A-Z0-9]{3,12}$",
+      "title": "Slug",
+      "type": "string"
+     },
+     "specialty": {
+      "enum": [
+       "dental",
+       "physio"
+      ],
+      "title": "Specialty",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "slug",
+     "specialty"
+    ],
+    "title": "ClinicCreate",
+    "type": "object"
+   },
+   "ClinicOut": {
+    "properties": {
+     "address": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Address"
+     },
+     "default_fee_paise": {
+      "title": "Default Fee Paise",
+      "type": "integer"
+     },
+     "exotel_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Exotel Number"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "languages": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Languages",
+      "type": "array"
+     },
+     "map_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Map Url"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Phone"
+     },
+     "plan": {
+      "default": "pilot",
+      "title": "Plan",
+      "type": "string"
+     },
+     "settings": {
+      "$ref": "#/components/schemas/ClinicSettings"
+     },
+     "slug": {
+      "title": "Slug",
+      "type": "string"
+     },
+     "specialty": {
+      "title": "Specialty",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "timezone": {
+      "title": "Timezone",
+      "type": "string"
+     },
+     "trial_ends_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trial Ends At"
+     },
+     "wa_phone_number_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Wa Phone Number Id"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "slug",
+     "specialty",
+     "timezone",
+     "languages",
+     "address",
+     "map_url",
+     "phone",
+     "default_fee_paise",
+     "settings",
+     "status",
+     "trial_ends_at"
+    ],
+    "title": "ClinicOut",
+    "type": "object"
+   },
+   "ClinicSettings": {
+    "additionalProperties": false,
+    "description": "Clinic-configurable business-rule parameters (defaults from FRD \u00a76).",
+    "properties": {
+     "alert_ahead": {
+      "default": 3,
+      "maximum": 20.0,
+      "minimum": 1.0,
+      "title": "Alert Ahead",
+      "type": "integer"
+     },
+     "booking_horizon_days": {
+      "default": 14,
+      "maximum": 60.0,
+      "minimum": 1.0,
+      "title": "Booking Horizon Days",
+      "type": "integer"
+     },
+     "change_cutoff_minutes": {
+      "default": 60,
+      "maximum": 1440.0,
+      "minimum": 0.0,
+      "title": "Change Cutoff Minutes",
+      "type": "integer"
+     },
+     "max_upcoming_per_doctor": {
+      "default": 2,
+      "maximum": 10.0,
+      "minimum": 1.0,
+      "title": "Max Upcoming Per Doctor",
+      "type": "integer"
+     },
+     "noshow_grace_minutes": {
+      "default": 0,
+      "maximum": 180.0,
+      "minimum": 0.0,
+      "title": "Noshow Grace Minutes",
+      "type": "integer"
+     },
+     "quiet_end": {
+      "default": "08:00:00",
+      "format": "time",
+      "title": "Quiet End",
+      "type": "string"
+     },
+     "quiet_start": {
+      "default": "21:00:00",
+      "format": "time",
+      "title": "Quiet Start",
+      "type": "string"
+     },
+     "staff_can_override_cutoff": {
+      "default": false,
+      "title": "Staff Can Override Cutoff",
+      "type": "boolean"
+     },
+     "token_window_minutes": {
+      "default": 60,
+      "maximum": 240.0,
+      "minimum": 0.0,
+      "title": "Token Window Minutes",
+      "type": "integer"
+     }
+    },
+    "title": "ClinicSettings",
+    "type": "object"
+   },
+   "ClinicUpdate": {
+    "additionalProperties": false,
+    "properties": {
+     "address": {
+      "anyOf": [
+       {
+        "maxLength": 500,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Address"
+     },
+     "default_fee_paise": {
+      "anyOf": [
+       {
+        "maximum": 10000000.0,
+        "minimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Default Fee Paise"
+     },
+     "exotel_number": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Exotel Number"
+     },
+     "languages": {
+      "anyOf": [
+       {
+        "items": {
+         "enum": [
+          "gu",
+          "hi",
+          "en"
+         ],
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Languages"
+     },
+     "map_url": {
+      "anyOf": [
+       {
+        "maxLength": 500,
+        "pattern": "^https://",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Map Url"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "maxLength": 160,
+        "minLength": 2,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Phone"
+     },
+     "settings": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/ClinicSettings"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "wa_phone_number_id": {
+      "anyOf": [
+       {
+        "pattern": "^\\d{6,32}$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Wa Phone Number Id"
+     }
+    },
+    "title": "ClinicUpdate",
+    "type": "object"
+   },
+   "ConsentIn": {
+    "additionalProperties": false,
+    "properties": {
+     "granted": {
+      "title": "Granted",
+      "type": "boolean"
+     },
+     "purpose": {
+      "enum": [
+       "reminders",
+       "recalls"
+      ],
+      "title": "Purpose",
+      "type": "string"
+     }
+    },
+    "required": [
+     "purpose",
+     "granted"
+    ],
+    "title": "ConsentIn",
+    "type": "object"
+   },
+   "DoctorCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "fee_paise": {
+      "anyOf": [
+       {
+        "maximum": 10000000.0,
+        "minimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fee Paise"
+     },
+     "name": {
+      "maxLength": 120,
+      "minLength": 2,
+      "title": "Name",
+      "type": "string"
+     },
+     "slot_minutes": {
+      "default": 15,
+      "maximum": 120.0,
+      "minimum": 5.0,
+      "title": "Slot Minutes",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "name"
+    ],
+    "title": "DoctorCreate",
+    "type": "object"
+   },
+   "DoctorOut": {
+    "properties": {
+     "fee_paise": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fee Paise"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_active": {
+      "title": "Is Active",
+      "type": "boolean"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "sessions": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/SessionOut"
+      },
+      "title": "Sessions",
+      "type": "array"
+     },
+     "slot_minutes": {
+      "title": "Slot Minutes",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "fee_paise",
+     "slot_minutes",
+     "is_active"
+    ],
+    "title": "DoctorOut",
+    "type": "object"
+   },
+   "DoctorToday": {
+    "properties": {
+     "appointments": {
+      "$ref": "#/components/schemas/AppointmentCounts"
+     },
+     "current_token": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Current Token"
+     },
+     "doctor_id": {
+      "format": "uuid",
+      "title": "Doctor Id",
+      "type": "string"
+     },
+     "is_active": {
+      "title": "Is Active",
+      "type": "boolean"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "tokens": {
+      "$ref": "#/components/schemas/TokenCounts"
+     }
+    },
+    "required": [
+     "doctor_id",
+     "name",
+     "is_active",
+     "appointments",
+     "tokens",
+     "current_token"
+    ],
+    "title": "DoctorToday",
+    "type": "object"
+   },
+   "DoctorUpdate": {
+    "additionalProperties": false,
+    "properties": {
+     "fee_paise": {
+      "anyOf": [
+       {
+        "maximum": 10000000.0,
+        "minimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fee Paise"
+     },
+     "is_active": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Is Active"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "maxLength": 120,
+        "minLength": 2,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "slot_minutes": {
+      "anyOf": [
+       {
+        "maximum": 120.0,
+        "minimum": 5.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Slot Minutes"
+     }
+    },
+    "title": "DoctorUpdate",
+    "type": "object"
+   },
+   "EntryOut": {
+    "properties": {
+     "ahead": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ahead"
+     },
+     "appointment_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Appointment Id"
+     },
+     "called_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Called At"
+     },
+     "eta": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Eta"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "issued_at": {
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+     },
+     "kind": {
+      "title": "Kind",
+      "type": "string"
+     },
+     "patient_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Id"
+     },
+     "patient_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Name"
+     },
+     "phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Phone"
+     },
+     "public_code": {
+      "title": "Public Code",
+      "type": "string"
+     },
+     "queue_session_id": {
+      "format": "uuid",
+      "title": "Queue Session Id",
+      "type": "string"
+     },
+     "slot_start": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Slot Start"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "token_no": {
+      "title": "Token No",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "id",
+     "queue_session_id",
+     "token_no",
+     "kind",
+     "status",
+     "patient_id",
+     "appointment_id",
+     "slot_start",
+     "issued_at",
+     "called_at",
+     "public_code"
+    ],
+    "title": "EntryOut",
+    "type": "object"
+   },
+   "ExceptionCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "doctor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctor Id"
+     },
+     "end_date": {
+      "format": "date",
+      "title": "End Date",
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "holiday",
+       "leave"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "maxLength": 200,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reason"
+     },
+     "start_date": {
+      "format": "date",
+      "title": "Start Date",
+      "type": "string"
+     }
+    },
+    "required": [
+     "start_date",
+     "end_date",
+     "kind"
+    ],
+    "title": "ExceptionCreate",
+    "type": "object"
+   },
+   "ExceptionOut": {
+    "properties": {
+     "doctor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctor Id"
+     },
+     "end_date": {
+      "format": "date",
+      "title": "End Date",
+      "type": "string"
+     },
+     "flagged_appointments": {
+      "default": 0,
+      "title": "Flagged Appointments",
+      "type": "integer"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "title": "Kind",
+      "type": "string"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reason"
+     },
+     "start_date": {
+      "format": "date",
+      "title": "Start Date",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "doctor_id",
+     "start_date",
+     "end_date",
+     "kind",
+     "reason"
+    ],
+    "title": "ExceptionOut",
+    "type": "object"
+   },
+   "ExtendIn": {
+    "additionalProperties": false,
+    "properties": {
+     "days": {
+      "maximum": 365.0,
+      "minimum": 1.0,
+      "title": "Days",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "days"
+    ],
+    "title": "ExtendIn",
+    "type": "object"
+   },
+   "FollowupIn": {
+    "additionalProperties": false,
+    "description": "One-tap follow-ups (FR-6.2): 'Review in 7 days', 'Recall in 6 months', 'Plan: 10 sessions'.",
+    "properties": {
+     "days": {
+      "anyOf": [
+       {
+        "maximum": 730.0,
+        "minimum": 1.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Days"
+     },
+     "interval_days": {
+      "anyOf": [
+       {
+        "maximum": 60.0,
+        "minimum": 1.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Interval Days"
+     },
+     "kind": {
+      "enum": [
+       "days",
+       "rule",
+       "plan"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "label": {
+      "anyOf": [
+       {
+        "maxLength": 80,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Label"
+     },
+     "sessions": {
+      "anyOf": [
+       {
+        "maximum": 100.0,
+        "minimum": 2.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sessions"
+     },
+     "visit_type": {
+      "anyOf": [
+       {
+        "pattern": "^[a-z_]{2,40}$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Visit Type"
+     }
+    },
+    "required": [
+     "kind"
+    ],
+    "title": "FollowupIn",
+    "type": "object"
+   },
+   "FollowupOut": {
+    "properties": {
+     "due_date": {
+      "format": "date",
+      "title": "Due Date",
+      "type": "string"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "recall_id": {
+      "format": "uuid",
+      "title": "Recall Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "recall_id",
+     "due_date",
+     "label"
+    ],
+    "title": "FollowupOut",
+    "type": "object"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "title": "Detail",
+      "type": "array"
+     }
+    },
+    "title": "HTTPValidationError",
+    "type": "object"
+   },
+   "InboxItemOut": {
+    "properties": {
+     "can_reply": {
+      "title": "Can Reply",
+      "type": "boolean"
+     },
+     "conversation_id": {
+      "format": "uuid",
+      "title": "Conversation Id",
+      "type": "string"
+     },
+     "last_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last At"
+     },
+     "last_message": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Message"
+     },
+     "opened_at": {
+      "format": "date-time",
+      "title": "Opened At",
+      "type": "string"
+     },
+     "patient_names": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Patient Names",
+      "type": "array"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "reason": {
+      "title": "Reason",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "ticket_id": {
+      "format": "uuid",
+      "title": "Ticket Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "ticket_id",
+     "conversation_id",
+     "reason",
+     "status",
+     "opened_at",
+     "phone",
+     "patient_names",
+     "last_message",
+     "last_at",
+     "can_reply"
+    ],
+    "title": "InboxItemOut",
+    "type": "object"
+   },
+   "ManualCallIn": {
+    "additionalProperties": false,
+    "properties": {
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone"
+    ],
+    "title": "ManualCallIn",
+    "type": "object"
+   },
+   "Me": {
+    "properties": {
+     "clinic_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Clinic Id"
+     },
+     "memberships": {
+      "items": {
+       "$ref": "#/components/schemas/MembershipSummary"
+      },
+      "title": "Memberships",
+      "type": "array"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "role": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Role"
+     },
+     "user_id": {
+      "format": "uuid",
+      "title": "User Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "user_id",
+     "phone",
+     "name",
+     "clinic_id",
+     "role",
+     "memberships"
+    ],
+    "title": "Me",
+    "type": "object"
+   },
+   "MembershipOut": {
+    "properties": {
+     "clinic_id": {
+      "format": "uuid",
+      "title": "Clinic Id",
+      "type": "string"
+     },
+     "doctor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctor Id"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "role": {
+      "title": "Role",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "user_id": {
+      "format": "uuid",
+      "title": "User Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "clinic_id",
+     "user_id",
+     "role",
+     "doctor_id",
+     "status"
+    ],
+    "title": "MembershipOut",
+    "type": "object"
+   },
+   "MembershipSummary": {
+    "properties": {
+     "clinic_id": {
+      "format": "uuid",
+      "title": "Clinic Id",
+      "type": "string"
+     },
+     "clinic_name": {
+      "title": "Clinic Name",
+      "type": "string"
+     },
+     "role": {
+      "title": "Role",
+      "type": "string"
+     }
+    },
+    "required": [
+     "clinic_id",
+     "clinic_name",
+     "role"
+    ],
+    "title": "MembershipSummary",
+    "type": "object"
+   },
+   "MessageOut": {
+    "properties": {
+     "at": {
+      "format": "date-time",
+      "title": "At",
+      "type": "string"
+     },
+     "body": {
+      "additionalProperties": true,
+      "title": "Body",
+      "type": "object"
+     },
+     "direction": {
+      "title": "Direction",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "title": "Kind",
+      "type": "string"
+     },
+     "sent_by_user_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sent By User Id"
+     },
+     "status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Status"
+     }
+    },
+    "required": [
+     "id",
+     "direction",
+     "kind",
+     "body",
+     "status",
+     "sent_by_user_id",
+     "at"
+    ],
+    "title": "MessageOut",
+    "type": "object"
+   },
+   "MissedCallOut": {
+    "properties": {
+     "appointment_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Appointment Id"
+     },
+     "called_at": {
+      "format": "date-time",
+      "title": "Called At",
+      "type": "string"
+     },
+     "caller_phone": {
+      "title": "Caller Phone",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "last_called_at": {
+      "format": "date-time",
+      "title": "Last Called At",
+      "type": "string"
+     },
+     "offer_sent_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Offer Sent At"
+     },
+     "patient_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Id"
+     },
+     "patient_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Name"
+     },
+     "repeat_count": {
+      "title": "Repeat Count",
+      "type": "integer"
+     },
+     "resolution": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Resolution"
+     },
+     "source": {
+      "title": "Source",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "caller_phone",
+     "called_at",
+     "last_called_at",
+     "repeat_count",
+     "status",
+     "source",
+     "offer_sent_at",
+     "appointment_id",
+     "resolution"
+    ],
+    "title": "MissedCallOut",
+    "type": "object"
+   },
+   "OnboardingOut": {
+    "properties": {
+     "clinic": {
+      "$ref": "#/components/schemas/ClinicOut"
+     },
+     "tokens": {
+      "$ref": "#/components/schemas/TokenResponse"
+     }
+    },
+    "required": [
+     "clinic",
+     "tokens"
+    ],
+    "title": "OnboardingOut",
+    "type": "object"
+   },
+   "OtpRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone"
+    ],
+    "title": "OtpRequest",
+    "type": "object"
+   },
+   "OtpVerify": {
+    "additionalProperties": false,
+    "properties": {
+     "code": {
+      "pattern": "^\\d{6}$",
+      "title": "Code",
+      "type": "string"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone",
+     "code"
+    ],
+    "title": "OtpVerify",
+    "type": "object"
+   },
+   "PatientCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "account_holder_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account Holder Id"
+     },
+     "age": {
+      "anyOf": [
+       {
+        "maximum": 120.0,
+        "minimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Age"
+     },
+     "language": {
+      "anyOf": [
+       {
+        "enum": [
+         "gu",
+         "hi",
+         "en"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Language"
+     },
+     "name": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone",
+     "name"
+    ],
+    "title": "PatientCreate",
+    "type": "object"
+   },
+   "PatientOut": {
+    "properties": {
+     "account_holder_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account Holder Id"
+     },
+     "age": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Age"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "language": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Language"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "opted_out_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Opted Out At"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "recalls_consent": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recalls Consent"
+     },
+     "reminders_consent": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reminders Consent"
+     }
+    },
+    "required": [
+     "id",
+     "phone",
+     "name",
+     "age",
+     "language",
+     "account_holder_id",
+     "opted_out_at",
+     "created_at"
+    ],
+    "title": "PatientOut",
+    "type": "object"
+   },
+   "PatientUpdate": {
+    "additionalProperties": false,
+    "properties": {
+     "age": {
+      "anyOf": [
+       {
+        "maximum": 120.0,
+        "minimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Age"
+     },
+     "language": {
+      "anyOf": [
+       {
+        "enum": [
+         "gu",
+         "hi",
+         "en"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Language"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "maxLength": 120,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     }
+    },
+    "title": "PatientUpdate",
+    "type": "object"
+   },
+   "PlanIn": {
+    "additionalProperties": false,
+    "properties": {
+     "plan": {
+      "enum": [
+       "pilot",
+       "basic",
+       "pro"
+      ],
+      "title": "Plan",
+      "type": "string"
+     }
+    },
+    "required": [
+     "plan"
+    ],
+    "title": "PlanIn",
+    "type": "object"
+   },
+   "PublicQueueOut": {
+    "properties": {
+     "ahead": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ahead"
+     },
+     "current_token_no": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Current Token No"
+     },
+     "doctor_name": {
+      "title": "Doctor Name",
+      "type": "string"
+     },
+     "eta": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Eta"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "token_no": {
+      "title": "Token No",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "token_no",
+     "status",
+     "current_token_no",
+     "ahead",
+     "eta",
+     "doctor_name"
+    ],
+    "title": "PublicQueueOut",
+    "type": "object"
+   },
+   "QueueSessionOut": {
+    "properties": {
+     "avg_consult_minutes": {
+      "title": "Avg Consult Minutes",
+      "type": "number"
+     },
+     "current_token_no": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Current Token No"
+     },
+     "doctor_id": {
+      "format": "uuid",
+      "title": "Doctor Id",
+      "type": "string"
+     },
+     "ends_at": {
+      "format": "date-time",
+      "title": "Ends At",
+      "type": "string"
+     },
+     "entries": {
+      "items": {
+       "$ref": "#/components/schemas/EntryOut"
+      },
+      "title": "Entries",
+      "type": "array"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "max_tokens": {
+      "title": "Max Tokens",
+      "type": "integer"
+     },
+     "session_date": {
+      "format": "date",
+      "title": "Session Date",
+      "type": "string"
+     },
+     "starts_at": {
+      "format": "date-time",
+      "title": "Starts At",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "doctor_id",
+     "session_date",
+     "starts_at",
+     "ends_at",
+     "max_tokens",
+     "current_token_no",
+     "avg_consult_minutes",
+     "entries"
+    ],
+    "title": "QueueSessionOut",
+    "type": "object"
+   },
+   "RecallOut": {
+    "properties": {
+     "booked_appointment_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Booked Appointment Id"
+     },
+     "closed_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Closed Reason"
+     },
+     "doctor_id": {
+      "format": "uuid",
+      "title": "Doctor Id",
+      "type": "string"
+     },
+     "due_date": {
+      "format": "date",
+      "title": "Due Date",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "last_sent_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Last Sent At"
+     },
+     "patient_id": {
+      "format": "uuid",
+      "title": "Patient Id",
+      "type": "string"
+     },
+     "patient_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Name"
+     },
+     "patient_phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Phone"
+     },
+     "plan_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Plan Id"
+     },
+     "sends": {
+      "title": "Sends",
+      "type": "integer"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "visit_type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Visit Type"
+     }
+    },
+    "required": [
+     "id",
+     "patient_id",
+     "doctor_id",
+     "plan_id",
+     "visit_type",
+     "label",
+     "due_date",
+     "status",
+     "sends",
+     "last_sent_at",
+     "booked_appointment_id",
+     "closed_reason"
+    ],
+    "title": "RecallOut",
+    "type": "object"
+   },
+   "ReplyIn": {
+    "additionalProperties": false,
+    "properties": {
+     "text": {
+      "maxLength": 4000,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "text"
+    ],
+    "title": "ReplyIn",
+    "type": "object"
+   },
+   "RescheduleIn": {
+    "additionalProperties": false,
+    "properties": {
+     "doctor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctor Id"
+     },
+     "slot_start": {
+      "format": "date-time",
+      "title": "Slot Start",
+      "type": "string"
+     }
+    },
+    "required": [
+     "slot_start"
+    ],
+    "title": "RescheduleIn",
+    "type": "object"
+   },
+   "ResolveIn": {
+    "additionalProperties": false,
+    "properties": {
+     "outcome": {
+      "enum": [
+       "called_back",
+       "booked_by_phone",
+       "no_answer",
+       "not_needed"
+      ],
+      "title": "Outcome",
+      "type": "string"
+     }
+    },
+    "required": [
+     "outcome"
+    ],
+    "title": "ResolveIn",
+    "type": "object"
+   },
+   "RevenueItem": {
+    "properties": {
+     "appointment_id": {
+      "format": "uuid",
+      "title": "Appointment Id",
+      "type": "string"
+     },
+     "doctor": {
+      "title": "Doctor",
+      "type": "string"
+     },
+     "fee_paise": {
+      "title": "Fee Paise",
+      "type": "integer"
+     },
+     "recovered_at": {
+      "format": "date-time",
+      "title": "Recovered At",
+      "type": "string"
+     },
+     "source": {
+      "title": "Source",
+      "type": "string"
+     }
+    },
+    "required": [
+     "appointment_id",
+     "source",
+     "doctor",
+     "fee_paise",
+     "recovered_at"
+    ],
+    "title": "RevenueItem",
+    "type": "object"
+   },
+   "RevenueReportOut": {
+    "properties": {
+     "by_source": {
+      "additionalProperties": {
+       "$ref": "#/components/schemas/SourceTotals"
+      },
+      "propertyNames": {
+       "enum": [
+        "missed_call",
+        "recall",
+        "noshow_rebook"
+       ]
+      },
+      "title": "By Source",
+      "type": "object"
+     },
+     "currency": {
+      "const": "INR",
+      "title": "Currency",
+      "type": "string"
+     },
+     "estimated": {
+      "const": true,
+      "title": "Estimated",
+      "type": "boolean"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/RevenueItem"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "month": {
+      "title": "Month",
+      "type": "string"
+     },
+     "total_estimated_revenue_paise": {
+      "title": "Total Estimated Revenue Paise",
+      "type": "integer"
+     },
+     "total_visits": {
+      "title": "Total Visits",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "month",
+     "currency",
+     "estimated",
+     "label",
+     "total_visits",
+     "total_estimated_revenue_paise",
+     "by_source",
+     "items"
+    ],
+    "title": "RevenueReportOut",
+    "type": "object"
+   },
+   "RuleIn": {
+    "additionalProperties": false,
+    "properties": {
+     "delay_days": {
+      "maximum": 730.0,
+      "minimum": 1.0,
+      "title": "Delay Days",
+      "type": "integer"
+     },
+     "followup_days": {
+      "items": {
+       "type": "integer"
+      },
+      "maxItems": 2,
+      "title": "Followup Days",
+      "type": "array"
+     },
+     "is_active": {
+      "default": true,
+      "title": "Is Active",
+      "type": "boolean"
+     },
+     "label": {
+      "maxLength": 80,
+      "minLength": 2,
+      "title": "Label",
+      "type": "string"
+     },
+     "plan_based": {
+      "default": false,
+      "title": "Plan Based",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "label",
+     "delay_days"
+    ],
+    "title": "RuleIn",
+    "type": "object"
+   },
+   "RuleOut": {
+    "properties": {
+     "delay_days": {
+      "title": "Delay Days",
+      "type": "integer"
+     },
+     "followup_days": {
+      "items": {
+       "type": "integer"
+      },
+      "title": "Followup Days",
+      "type": "array"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "is_active": {
+      "title": "Is Active",
+      "type": "boolean"
+     },
+     "label": {
+      "title": "Label",
+      "type": "string"
+     },
+     "plan_based": {
+      "title": "Plan Based",
+      "type": "boolean"
+     },
+     "visit_type": {
+      "title": "Visit Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "visit_type",
+     "label",
+     "delay_days",
+     "followup_days",
+     "plan_based",
+     "is_active"
+    ],
+    "title": "RuleOut",
+    "type": "object"
+   },
+   "SelectClinic": {
+    "additionalProperties": false,
+    "properties": {
+     "clinic_id": {
+      "format": "uuid",
+      "title": "Clinic Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "clinic_id"
+    ],
+    "title": "SelectClinic",
+    "type": "object"
+   },
+   "SessionIn": {
+    "additionalProperties": false,
+    "properties": {
+     "end_time": {
+      "format": "time",
+      "title": "End Time",
+      "type": "string"
+     },
+     "max_tokens": {
+      "default": 30,
+      "maximum": 500.0,
+      "minimum": 0.0,
+      "title": "Max Tokens",
+      "type": "integer"
+     },
+     "start_time": {
+      "format": "time",
+      "title": "Start Time",
+      "type": "string"
+     },
+     "weekday": {
+      "description": "0 = Monday",
+      "maximum": 6.0,
+      "minimum": 0.0,
+      "title": "Weekday",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "weekday",
+     "start_time",
+     "end_time"
+    ],
+    "title": "SessionIn",
+    "type": "object"
+   },
+   "SessionOut": {
+    "properties": {
+     "end_time": {
+      "format": "time",
+      "title": "End Time",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "max_tokens": {
+      "title": "Max Tokens",
+      "type": "integer"
+     },
+     "start_time": {
+      "format": "time",
+      "title": "Start Time",
+      "type": "string"
+     },
+     "weekday": {
+      "title": "Weekday",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "id",
+     "weekday",
+     "start_time",
+     "end_time",
+     "max_tokens"
+    ],
+    "title": "SessionOut",
+    "type": "object"
+   },
+   "SessionsReplace": {
+    "additionalProperties": false,
+    "properties": {
+     "sessions": {
+      "items": {
+       "$ref": "#/components/schemas/SessionIn"
+      },
+      "maxItems": 42,
+      "title": "Sessions",
+      "type": "array"
+     }
+    },
+    "required": [
+     "sessions"
+    ],
+    "title": "SessionsReplace",
+    "type": "object"
+   },
+   "SlotOut": {
+    "properties": {
+     "end": {
+      "format": "date-time",
+      "title": "End",
+      "type": "string"
+     },
+     "start": {
+      "format": "date-time",
+      "title": "Start",
+      "type": "string"
+     }
+    },
+    "required": [
+     "start",
+     "end"
+    ],
+    "title": "SlotOut",
+    "type": "object"
+   },
+   "SourceTotals": {
+    "properties": {
+     "estimated_revenue_paise": {
+      "title": "Estimated Revenue Paise",
+      "type": "integer"
+     },
+     "visits": {
+      "title": "Visits",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "visits",
+     "estimated_revenue_paise"
+    ],
+    "title": "SourceTotals",
+    "type": "object"
+   },
+   "StaffInvite": {
+    "additionalProperties": false,
+    "properties": {
+     "doctor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctor Id"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "maxLength": 120,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "role": {
+      "enum": [
+       "doctor",
+       "receptionist",
+       "owner"
+      ],
+      "title": "Role",
+      "type": "string"
+     }
+    },
+    "required": [
+     "phone",
+     "role"
+    ],
+    "title": "StaffInvite",
+    "type": "object"
+   },
+   "StaffOut": {
+    "properties": {
+     "clinic_id": {
+      "format": "uuid",
+      "title": "Clinic Id",
+      "type": "string"
+     },
+     "doctor_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctor Id"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "phone": {
+      "title": "Phone",
+      "type": "string"
+     },
+     "role": {
+      "title": "Role",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "user_id": {
+      "format": "uuid",
+      "title": "User Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "clinic_id",
+     "user_id",
+     "role",
+     "doctor_id",
+     "status",
+     "phone",
+     "name"
+    ],
+    "title": "StaffOut",
+    "type": "object"
+   },
+   "StatusIn": {
+    "additionalProperties": false,
+    "properties": {
+     "status": {
+      "enum": [
+       "confirmed",
+       "arrived",
+       "completed",
+       "no_show"
+      ],
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status"
+    ],
+    "title": "StatusIn",
+    "type": "object"
+   },
+   "SuspendIn": {
+    "additionalProperties": false,
+    "properties": {
+     "reason": {
+      "maxLength": 200,
+      "minLength": 3,
+      "title": "Reason",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reason"
+    ],
+    "title": "SuspendIn",
+    "type": "object"
+   },
+   "TodayOut": {
+    "properties": {
+     "call_backs_needed": {
+      "title": "Call Backs Needed",
+      "type": "integer"
+     },
+     "day": {
+      "format": "date",
+      "title": "Day",
+      "type": "string"
+     },
+     "doctors": {
+      "items": {
+       "$ref": "#/components/schemas/DoctorToday"
+      },
+      "title": "Doctors",
+      "type": "array"
+     },
+     "emergencies": {
+      "title": "Emergencies",
+      "type": "integer"
+     },
+     "missed_calls_today": {
+      "title": "Missed Calls Today",
+      "type": "integer"
+     },
+     "needs_reschedule": {
+      "title": "Needs Reschedule",
+      "type": "integer"
+     },
+     "open_chats": {
+      "title": "Open Chats",
+      "type": "integer"
+     },
+     "recalls_due": {
+      "title": "Recalls Due",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "day",
+     "doctors",
+     "open_chats",
+     "emergencies",
+     "needs_reschedule",
+     "recalls_due",
+     "missed_calls_today",
+     "call_backs_needed"
+    ],
+    "title": "TodayOut",
+    "type": "object"
+   },
+   "TokenCounts": {
+    "properties": {
+     "called": {
+      "title": "Called",
+      "type": "integer"
+     },
+     "completed": {
+      "title": "Completed",
+      "type": "integer"
+     },
+     "skipped": {
+      "title": "Skipped",
+      "type": "integer"
+     },
+     "waiting": {
+      "title": "Waiting",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "waiting",
+     "called",
+     "skipped",
+     "completed"
+    ],
+    "title": "TokenCounts",
+    "type": "object"
+   },
+   "TokenIn": {
+    "additionalProperties": false,
+    "properties": {
+     "doctor_id": {
+      "format": "uuid",
+      "title": "Doctor Id",
+      "type": "string"
+     },
+     "patient_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Patient Id"
+     },
+     "phone": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Phone"
+     }
+    },
+    "required": [
+     "doctor_id"
+    ],
+    "title": "TokenIn",
+    "type": "object"
+   },
+   "TokenResponse": {
+    "properties": {
+     "access_token": {
+      "title": "Access Token",
+      "type": "string"
+     },
+     "clinic_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Clinic Id"
+     },
+     "expires_in": {
+      "title": "Expires In",
+      "type": "integer"
+     },
+     "memberships": {
+      "default": [],
+      "items": {
+       "$ref": "#/components/schemas/MembershipSummary"
+      },
+      "title": "Memberships",
+      "type": "array"
+     },
+     "role": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Role"
+     },
+     "token_type": {
+      "default": "bearer",
+      "title": "Token Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "access_token",
+     "expires_in",
+     "clinic_id",
+     "role"
+    ],
+    "title": "TokenResponse",
+    "type": "object"
+   },
+   "UsageOut": {
+    "properties": {
+     "days_left": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Days Left"
+     },
+     "doctors": {
+      "title": "Doctors",
+      "type": "integer"
+     },
+     "doctors_level": {
+      "enum": [
+       "ok",
+       "warning",
+       "exceeded"
+      ],
+      "title": "Doctors Level",
+      "type": "string"
+     },
+     "doctors_limit": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doctors Limit"
+     },
+     "messages_level": {
+      "enum": [
+       "ok",
+       "warning",
+       "exceeded"
+      ],
+      "title": "Messages Level",
+      "type": "string"
+     },
+     "messages_limit": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Messages Limit"
+     },
+     "messages_this_month": {
+      "title": "Messages This Month",
+      "type": "integer"
+     },
+     "patients": {
+      "title": "Patients",
+      "type": "integer"
+     },
+     "plan": {
+      "title": "Plan",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     },
+     "trial_ends_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trial Ends At"
+     }
+    },
+    "required": [
+     "plan",
+     "status",
+     "trial_ends_at",
+     "days_left",
+     "messages_this_month",
+     "messages_limit",
+     "messages_level",
+     "doctors",
+     "doctors_limit",
+     "doctors_level",
+     "patients"
+    ],
+    "title": "UsageOut",
+    "type": "object"
+   },
+   "ValidationError": {
+    "properties": {
+     "ctx": {
+      "title": "Context",
+      "type": "object"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "title": "Location",
+      "type": "array"
+     },
+     "msg": {
+      "title": "Message",
+      "type": "string"
+     },
+     "type": {
+      "title": "Error Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError",
+    "type": "object"
+   }
+  }
+ },
+ "info": {
+  "title": "ClinicDesk AI API",
+  "version": "0.1.0"
+ },
+ "openapi": "3.1.0",
+ "paths": {
+  "/api/v1/admin/clinics": {
+   "get": {
+    "description": "FR-9.4: every clinic with plan, trial and usage counts (no patient data, DP-10).",
+    "operationId": "admin_clinics_api_v1_admin_clinics_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AdminClinicOut"
+         },
+         "title": "Response Admin Clinics Api V1 Admin Clinics Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Admin Clinics",
+    "tags": [
+     "plan & platform admin"
+    ]
+   }
+  },
+  "/api/v1/admin/clinics/{clinic_id}/extend-trial": {
+   "post": {
+    "operationId": "extend_trial_api_v1_admin_clinics__clinic_id__extend_trial_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "clinic_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Clinic Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ExtendIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AdminClinicOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Extend Trial",
+    "tags": [
+     "plan & platform admin"
+    ]
+   }
+  },
+  "/api/v1/admin/clinics/{clinic_id}/plan": {
+   "post": {
+    "operationId": "change_plan_api_v1_admin_clinics__clinic_id__plan_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "clinic_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Clinic Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PlanIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AdminClinicOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Change Plan",
+    "tags": [
+     "plan & platform admin"
+    ]
+   }
+  },
+  "/api/v1/admin/clinics/{clinic_id}/reactivate": {
+   "post": {
+    "operationId": "reactivate_api_v1_admin_clinics__clinic_id__reactivate_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "clinic_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Clinic Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AdminClinicOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Reactivate",
+    "tags": [
+     "plan & platform admin"
+    ]
+   }
+  },
+  "/api/v1/admin/clinics/{clinic_id}/suspend": {
+   "post": {
+    "operationId": "suspend_api_v1_admin_clinics__clinic_id__suspend_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "clinic_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Clinic Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SuspendIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AdminClinicOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Suspend",
+    "tags": [
+     "plan & platform admin"
+    ]
+   }
+  },
+  "/api/v1/appointments": {
+   "get": {
+    "operationId": "list_for_day_api_v1_appointments_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "day",
+      "required": true,
+      "schema": {
+       "format": "date",
+       "title": "Day",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "doctor_id",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "format": "uuid",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Doctor Id"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AppointmentOut"
+         },
+         "title": "Response List For Day Api V1 Appointments Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List For Day",
+    "tags": [
+     "appointments"
+    ]
+   },
+   "post": {
+    "operationId": "book_api_v1_appointments_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/BookIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AppointmentOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Book",
+    "tags": [
+     "appointments"
+    ]
+   }
+  },
+  "/api/v1/appointments/{appointment_id}/cancel": {
+   "post": {
+    "operationId": "cancel_api_v1_appointments__appointment_id__cancel_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "appointment_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Appointment Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CancelIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AppointmentOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Cancel",
+    "tags": [
+     "appointments"
+    ]
+   }
+  },
+  "/api/v1/appointments/{appointment_id}/followup": {
+   "post": {
+    "description": "FR-6.2 one-tap follow-up after a visit.",
+    "operationId": "set_followup_api_v1_appointments__appointment_id__followup_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "appointment_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Appointment Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/FollowupIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/FollowupOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Set Followup",
+    "tags": [
+     "recall & revenue"
+    ]
+   }
+  },
+  "/api/v1/appointments/{appointment_id}/reschedule": {
+   "post": {
+    "operationId": "reschedule_api_v1_appointments__appointment_id__reschedule_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "appointment_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Appointment Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RescheduleIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AppointmentOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Reschedule",
+    "tags": [
+     "appointments"
+    ]
+   }
+  },
+  "/api/v1/appointments/{appointment_id}/status": {
+   "post": {
+    "operationId": "set_status_api_v1_appointments__appointment_id__status_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "appointment_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Appointment Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/StatusIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AppointmentOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Set Status",
+    "tags": [
+     "appointments"
+    ]
+   }
+  },
+  "/api/v1/audit": {
+   "get": {
+    "operationId": "list_audit_api_v1_audit_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "entity_type",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 40,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Entity Type"
+      }
+     },
+     {
+      "in": "query",
+      "name": "entity_id",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 64,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Entity Id"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 100,
+       "maximum": 500,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AuditOut"
+         },
+         "title": "Response List Audit Api V1 Audit Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Audit",
+    "tags": [
+     "audit"
+    ]
+   }
+  },
+  "/api/v1/auth/logout": {
+   "post": {
+    "operationId": "logout_api_v1_auth_logout_post",
+    "parameters": [
+     {
+      "in": "cookie",
+      "name": "cd_refresh",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cd Refresh"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Logout",
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/api/v1/auth/me": {
+   "get": {
+    "operationId": "me_api_v1_auth_me_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Me"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Me",
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/api/v1/auth/otp/request": {
+   "post": {
+    "operationId": "otp_request_api_v1_auth_otp_request_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "title": "Response Otp Request Api V1 Auth Otp Request Post",
+         "type": "object"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Otp Request",
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/api/v1/auth/otp/verify": {
+   "post": {
+    "operationId": "otp_verify_api_v1_auth_otp_verify_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpVerify"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TokenResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Otp Verify",
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/api/v1/auth/refresh": {
+   "post": {
+    "operationId": "refresh_api_v1_auth_refresh_post",
+    "parameters": [
+     {
+      "in": "cookie",
+      "name": "cd_refresh",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Cd Refresh"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TokenResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Refresh",
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/api/v1/auth/select-clinic": {
+   "post": {
+    "operationId": "select_clinic_api_v1_auth_select_clinic_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SelectClinic"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TokenResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Select Clinic",
+    "tags": [
+     "auth"
+    ]
+   }
+  },
+  "/api/v1/clinic": {
+   "get": {
+    "operationId": "get_clinic_api_v1_clinic_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ClinicOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Clinic",
+    "tags": [
+     "clinic"
+    ]
+   },
+   "patch": {
+    "operationId": "update_clinic_api_v1_clinic_patch",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ClinicUpdate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ClinicOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Update Clinic",
+    "tags": [
+     "clinic"
+    ]
+   }
+  },
+  "/api/v1/clinic/staff": {
+   "get": {
+    "operationId": "list_staff_api_v1_clinic_staff_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/StaffOut"
+         },
+         "title": "Response List Staff Api V1 Clinic Staff Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Staff",
+    "tags": [
+     "clinic"
+    ]
+   },
+   "post": {
+    "operationId": "invite_staff_api_v1_clinic_staff_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/StaffInvite"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MembershipOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Invite Staff",
+    "tags": [
+     "clinic"
+    ]
+   }
+  },
+  "/api/v1/clinic/usage": {
+   "get": {
+    "description": "FR-9.1 days left + usage; FR-9.3 warning levels.",
+    "operationId": "clinic_usage_api_v1_clinic_usage_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UsageOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Clinic Usage",
+    "tags": [
+     "plan & platform admin"
+    ]
+   }
+  },
+  "/api/v1/clinics": {
+   "post": {
+    "description": "FR-1.1: a signed-in user creates a clinic and becomes its owner.",
+    "operationId": "create_clinic_api_v1_clinics_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ClinicCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OnboardingOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Create Clinic",
+    "tags": [
+     "clinic"
+    ]
+   }
+  },
+  "/api/v1/dashboard/today": {
+   "get": {
+    "description": "FR-7.1: appointments, tokens, arrivals, no-shows per doctor, open chats (doctors: own row only).",
+    "operationId": "today_api_v1_dashboard_today_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "day",
+      "required": true,
+      "schema": {
+       "format": "date",
+       "title": "Day",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TodayOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Today",
+    "tags": [
+     "dashboard"
+    ]
+   }
+  },
+  "/api/v1/doctors": {
+   "get": {
+    "operationId": "list_doctors_api_v1_doctors_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/DoctorOut"
+         },
+         "title": "Response List Doctors Api V1 Doctors Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Doctors",
+    "tags": [
+     "scheduling"
+    ]
+   },
+   "post": {
+    "operationId": "create_doctor_api_v1_doctors_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/DoctorCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DoctorOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Create Doctor",
+    "tags": [
+     "scheduling"
+    ]
+   }
+  },
+  "/api/v1/doctors/{doctor_id}": {
+   "patch": {
+    "operationId": "update_doctor_api_v1_doctors__doctor_id__patch",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "doctor_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Doctor Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/DoctorUpdate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DoctorOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Update Doctor",
+    "tags": [
+     "scheduling"
+    ]
+   }
+  },
+  "/api/v1/doctors/{doctor_id}/sessions": {
+   "put": {
+    "operationId": "replace_sessions_api_v1_doctors__doctor_id__sessions_put",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "doctor_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Doctor Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SessionsReplace"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/SessionOut"
+         },
+         "title": "Response Replace Sessions Api V1 Doctors  Doctor Id  Sessions Put",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Replace Sessions",
+    "tags": [
+     "scheduling"
+    ]
+   }
+  },
+  "/api/v1/doctors/{doctor_id}/slots": {
+   "get": {
+    "operationId": "available_slots_api_v1_doctors__doctor_id__slots_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "doctor_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Doctor Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "from",
+      "required": true,
+      "schema": {
+       "format": "date",
+       "title": "From",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "to",
+      "required": true,
+      "schema": {
+       "format": "date",
+       "title": "To",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maximum": 500,
+         "minimum": 1,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Limit"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/SlotOut"
+         },
+         "title": "Response Available Slots Api V1 Doctors  Doctor Id  Slots Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Available Slots",
+    "tags": [
+     "scheduling"
+    ]
+   }
+  },
+  "/api/v1/health": {
+   "get": {
+    "operationId": "health_api_v1_health_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": {
+          "type": "string"
+         },
+         "title": "Response Health Api V1 Health Get",
+         "type": "object"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Health",
+    "tags": [
+     "ops"
+    ]
+   }
+  },
+  "/api/v1/inbox": {
+   "get": {
+    "operationId": "list_inbox_api_v1_inbox_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "status",
+      "required": false,
+      "schema": {
+       "default": "open",
+       "enum": [
+        "open",
+        "closed"
+       ],
+       "title": "Status",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/InboxItemOut"
+         },
+         "title": "Response List Inbox Api V1 Inbox Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Inbox",
+    "tags": [
+     "inbox"
+    ]
+   }
+  },
+  "/api/v1/inbox/conversations/{conversation_id}/hand-back": {
+   "post": {
+    "operationId": "hand_back_api_v1_inbox_conversations__conversation_id__hand_back_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "conversation_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Conversation Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Hand Back",
+    "tags": [
+     "inbox"
+    ]
+   }
+  },
+  "/api/v1/inbox/conversations/{conversation_id}/messages": {
+   "get": {
+    "operationId": "conversation_messages_api_v1_inbox_conversations__conversation_id__messages_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "conversation_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Conversation Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 100,
+       "maximum": 500,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/MessageOut"
+         },
+         "title": "Response Conversation Messages Api V1 Inbox Conversations  Conversation Id  Messages Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Conversation Messages",
+    "tags": [
+     "inbox"
+    ]
+   }
+  },
+  "/api/v1/inbox/conversations/{conversation_id}/reply": {
+   "post": {
+    "operationId": "reply_api_v1_inbox_conversations__conversation_id__reply_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "conversation_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Conversation Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReplyIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": {
+          "type": "string"
+         },
+         "title": "Response Reply Api V1 Inbox Conversations  Conversation Id  Reply Post",
+         "type": "object"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Reply",
+    "tags": [
+     "inbox"
+    ]
+   }
+  },
+  "/api/v1/missed-calls": {
+   "get": {
+    "description": "FR-3.4: missed calls with status recovered / pending / call back needed.",
+    "operationId": "list_calls_api_v1_missed_calls_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "day",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "format": "date",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Day"
+      }
+     },
+     {
+      "in": "query",
+      "name": "status",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "pending",
+          "recovered",
+          "call_back_needed",
+          "resolved"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Status"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/MissedCallOut"
+         },
+         "title": "Response List Calls Api V1 Missed Calls Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Calls",
+    "tags": [
+     "missed calls"
+    ]
+   },
+   "post": {
+    "operationId": "add_manual_api_v1_missed_calls_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ManualCallIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MissedCallOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Add Manual",
+    "tags": [
+     "missed calls"
+    ]
+   }
+  },
+  "/api/v1/missed-calls/{call_id}/resolve": {
+   "post": {
+    "operationId": "resolve_api_v1_missed_calls__call_id__resolve_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "call_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Call Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ResolveIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MissedCallOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Resolve",
+    "tags": [
+     "missed calls"
+    ]
+   }
+  },
+  "/api/v1/patients": {
+   "get": {
+    "operationId": "search_patients_api_v1_patients_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 60,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 200,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/PatientOut"
+         },
+         "title": "Response Search Patients Api V1 Patients Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Search Patients",
+    "tags": [
+     "patients"
+    ]
+   },
+   "post": {
+    "operationId": "create_patient_api_v1_patients_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PatientCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PatientOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Create Patient",
+    "tags": [
+     "patients"
+    ]
+   }
+  },
+  "/api/v1/patients/{patient_id}": {
+   "get": {
+    "operationId": "get_patient_api_v1_patients__patient_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "patient_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Patient Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PatientOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Patient",
+    "tags": [
+     "patients"
+    ]
+   },
+   "patch": {
+    "operationId": "update_patient_api_v1_patients__patient_id__patch",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "patient_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Patient Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PatientUpdate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PatientOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Update Patient",
+    "tags": [
+     "patients"
+    ]
+   }
+  },
+  "/api/v1/patients/{patient_id}/appointments": {
+   "get": {
+    "description": "FR-7.2: visit history + upcoming appointments for one patient.",
+    "operationId": "patient_appointments_api_v1_patients__patient_id__appointments_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "patient_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Patient Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AppointmentOut"
+         },
+         "title": "Response Patient Appointments Api V1 Patients  Patient Id  Appointments Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Patient Appointments",
+    "tags": [
+     "patients"
+    ]
+   }
+  },
+  "/api/v1/patients/{patient_id}/consents": {
+   "post": {
+    "description": "DP-2: consent for reminders / recalls given at the desk (separate from booking consent).",
+    "operationId": "record_consent_api_v1_patients__patient_id__consents_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "patient_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Patient Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ConsentIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": {
+          "type": "string"
+         },
+         "title": "Response Record Consent Api V1 Patients  Patient Id  Consents Post",
+         "type": "object"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Record Consent",
+    "tags": [
+     "patients"
+    ]
+   }
+  },
+  "/api/v1/public/queue/{code}": {
+   "get": {
+    "description": "FR-4.2: patient's live token status. No names or phones of anyone.",
+    "operationId": "public_queue_api_v1_public_queue__code__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "code",
+      "required": true,
+      "schema": {
+       "title": "Code",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PublicQueueOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Public Queue",
+    "tags": [
+     "public"
+    ]
+   }
+  },
+  "/api/v1/queue": {
+   "get": {
+    "operationId": "get_queue_api_v1_queue_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "doctor_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Doctor Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "day",
+      "required": true,
+      "schema": {
+       "format": "date",
+       "title": "Day",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/QueueSessionOut"
+         },
+         "title": "Response Get Queue Api V1 Queue Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Queue",
+    "tags": [
+     "queue"
+    ]
+   }
+  },
+  "/api/v1/queue/entries/{entry_id}/{action}": {
+   "post": {
+    "operationId": "change_entry_api_v1_queue_entries__entry_id___action__post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "entry_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Entry Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "action",
+      "required": true,
+      "schema": {
+       "enum": [
+        "skip",
+        "recall",
+        "cancel"
+       ],
+       "title": "Action",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EntryOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Change Entry",
+    "tags": [
+     "queue"
+    ]
+   }
+  },
+  "/api/v1/queue/sessions/{queue_session_id}/complete-current": {
+   "post": {
+    "operationId": "complete_current_api_v1_queue_sessions__queue_session_id__complete_current_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "queue_session_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Queue Session Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Complete Current",
+    "tags": [
+     "queue"
+    ]
+   }
+  },
+  "/api/v1/queue/sessions/{queue_session_id}/next": {
+   "post": {
+    "operationId": "call_next_api_v1_queue_sessions__queue_session_id__next_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "queue_session_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Queue Session Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "anyOf": [
+          {
+           "$ref": "#/components/schemas/EntryOut"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "title": "Response Call Next Api V1 Queue Sessions  Queue Session Id  Next Post"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Call Next",
+    "tags": [
+     "queue"
+    ]
+   }
+  },
+  "/api/v1/queue/tokens": {
+   "post": {
+    "description": "FR-4.1 receptionist issues a walk-in token.",
+    "operationId": "issue_token_api_v1_queue_tokens_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TokenIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EntryOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Issue Token",
+    "tags": [
+     "queue"
+    ]
+   }
+  },
+  "/api/v1/recall/rules": {
+   "get": {
+    "operationId": "list_rules_api_v1_recall_rules_get",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/RuleOut"
+         },
+         "title": "Response List Rules Api V1 Recall Rules Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Rules",
+    "tags": [
+     "recall & revenue"
+    ]
+   }
+  },
+  "/api/v1/recall/rules/{visit_type}": {
+   "put": {
+    "description": "FR-6.1: owner edits trigger delay, follow-ups and plan behaviour per visit type.",
+    "operationId": "upsert_rule_api_v1_recall_rules__visit_type__put",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "visit_type",
+      "required": true,
+      "schema": {
+       "pattern": "^[a-z_]{2,40}$",
+       "title": "Visit Type",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RuleIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RuleOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Upsert Rule",
+    "tags": [
+     "recall & revenue"
+    ]
+   }
+  },
+  "/api/v1/recalls": {
+   "get": {
+    "operationId": "list_recalls_api_v1_recalls_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "status",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "scheduled",
+          "sent",
+          "booked",
+          "declined",
+          "lapsed",
+          "cancelled",
+          "skipped"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Status"
+      }
+     },
+     {
+      "in": "query",
+      "name": "patient_id",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "format": "uuid",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Patient Id"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/RecallOut"
+         },
+         "title": "Response List Recalls Api V1 Recalls Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Recalls",
+    "tags": [
+     "recall & revenue"
+    ]
+   }
+  },
+  "/api/v1/reports/revenue": {
+   "get": {
+    "description": "FR-7.3 / AC-11: recovered appointments by source and estimated revenue (always labelled estimated).",
+    "operationId": "revenue_report_api_v1_reports_revenue_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "month",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Month"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RevenueReportOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Revenue Report",
+    "tags": [
+     "recall & revenue"
+    ]
+   }
+  },
+  "/api/v1/schedule-exceptions": {
+   "get": {
+    "operationId": "list_exceptions_api_v1_schedule_exceptions_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "from",
+      "required": true,
+      "schema": {
+       "format": "date",
+       "title": "From",
+       "type": "string"
+      }
+     },
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/ExceptionOut"
+         },
+         "title": "Response List Exceptions Api V1 Schedule Exceptions Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Exceptions",
+    "tags": [
+     "scheduling"
+    ]
+   },
+   "post": {
+    "operationId": "add_exception_api_v1_schedule_exceptions_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ExceptionCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ExceptionOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Add Exception",
+    "tags": [
+     "scheduling"
+    ]
+   }
+  },
+  "/api/v1/webhooks/whatsapp": {
+   "get": {
+    "operationId": "verify_api_v1_webhooks_whatsapp_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "hub.mode",
+      "required": false,
+      "schema": {
+       "default": "",
+       "title": "Hub.Mode",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "hub.verify_token",
+      "required": false,
+      "schema": {
+       "default": "",
+       "title": "Hub.Verify Token",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "hub.challenge",
+      "required": false,
+      "schema": {
+       "default": "",
+       "title": "Hub.Challenge",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "text/plain": {
+        "schema": {
+         "type": "string"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Verify",
+    "tags": [
+     "webhooks"
+    ]
+   },
+   "post": {
+    "operationId": "receive_api_v1_webhooks_whatsapp_post",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Receive",
+    "tags": [
+     "webhooks"
+    ]
+   }
+  }
+ }
+}

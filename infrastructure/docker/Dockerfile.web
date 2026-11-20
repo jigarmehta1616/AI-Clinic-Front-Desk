@@ -1,0 +1,16 @@
+# Dashboard: Vite build served as static files by Nginx, which also proxies /api to the API.
+#   docker build -f infrastructure/docker/Dockerfile.web -t clinicdesk-web .
+FROM node:22-alpine AS build
+WORKDIR /web
+COPY apps/web/package.json apps/web/package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY apps/web ./
+RUN npm run build
+
+FROM nginx:1.27-alpine
+# envsubst renders /etc/nginx/templates/*.template at start (only ${SERVER_NAME} is used).
+COPY infrastructure/nginx/default.conf.template /etc/nginx/templates/default.conf.template
+COPY infrastructure/nginx/security-headers.conf /etc/nginx/snippets/security-headers.conf
+COPY --from=build /web/dist /usr/share/nginx/html
+ENV NGINX_ENVSUBST_FILTER=^SERVER_NAME$
+EXPOSE 80 443

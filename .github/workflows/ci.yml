@@ -1,0 +1,78 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16.6-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-superuser
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 3s --health-retries 20
+      redis:
+        image: redis:7.4-alpine
+        ports: ["6380:6379"]
+    env:
+      PGPASSWORD: ci-superuser
+      TEST_DATABASE_URL: postgresql+asyncpg://clinicdesk_app:ci-app@localhost:5433/clinicdesk_test
+      TEST_MIGRATION_DATABASE_URL: postgresql+psycopg://clinicdesk_owner:ci-owner@localhost:5433/clinicdesk_test
+      DATABASE_URL: postgresql+asyncpg://clinicdesk_app:ci-app@localhost:5433/clinicdesk_test
+      JWT_SECRET: ci-only-jwt-secret-not-used-anywhere-else-000
+      OTP_PEPPER: ci-only-otp-pepper-not-used-anywhere-else-000
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: apps/api/pyproject.toml
+      - name: Create roles and test database
+        run: |
+          psql -h localhost -p 5433 -U postgres -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE ROLE clinicdesk_owner LOGIN PASSWORD 'ci-owner';
+          CREATE ROLE clinicdesk_app LOGIN PASSWORD 'ci-app' NOSUPERUSER NOBYPASSRLS;
+          CREATE DATABASE clinicdesk_test OWNER clinicdesk_owner;
+          SQL
+          psql -h localhost -p 5433 -U postgres -d clinicdesk_test -v ON_ERROR_STOP=1 -c \
+            "REVOKE ALL ON SCHEMA public FROM PUBLIC; GRANT ALL ON SCHEMA public TO clinicdesk_owner; GRANT USAGE ON SCHEMA public TO clinicdesk_app;"
+      - run: pip install -e ".[dev]"
+      - run: ruff check src tests migrations
+      - run: ruff format --check src tests migrations
+      - run: mypy src/clinicdesk/core src/clinicdesk/modules/booking/policy.py src/clinicdesk/modules/scheduling/policy.py src/clinicdesk/modules/queue/ordering.py src/clinicdesk/modules/queue/policy.py src/clinicdesk/modules/jobs/policy.py src/clinicdesk/modules/messaging/quiet_hours.py src/clinicdesk/modules/assistant/text.py src/clinicdesk/modules/recall/policy.py
+      - name: Tests (integration tests must not be skipped in CI)
+        run: pytest -q -rs | tee pytest.out; ! grep -q "SKIPPED" pytest.out
+      - name: OpenAPI schema is in sync with the web client
+        run: python ../../scripts/export_openapi.py && git diff --exit-code ../web/openapi.json
+
+  web:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - name: Generated API types match openapi.json
+        run: npm run gen:api && git diff --exit-code src/api/schema.ts
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build

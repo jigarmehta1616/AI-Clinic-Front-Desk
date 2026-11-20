@@ -1,0 +1,25 @@
+# API + worker image (same code, different command). Build from the repo root:
+#   docker build -f infrastructure/docker/Dockerfile.api -t clinicdesk-api .
+FROM python:3.12-slim AS build
+ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
+WORKDIR /src
+COPY apps/api/pyproject.toml ./
+COPY apps/api/src ./src
+RUN python -m venv /opt/venv && /opt/venv/bin/pip install .
+
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PATH=/opt/venv/bin:$PATH
+RUN groupadd --system --gid 10001 clinicdesk \
+ && useradd --system --uid 10001 --gid clinicdesk --home-dir /app --no-create-home clinicdesk
+COPY --from=build /opt/venv /opt/venv
+WORKDIR /app
+# Migrations ship in the image so the one-shot `migrate` service runs the exact schema the code expects.
+COPY apps/api/alembic.ini ./alembic.ini
+COPY apps/api/migrations ./migrations
+USER clinicdesk
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=3 \
+  CMD ["python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=4).status == 200 else 1)"]
+# Behind Nginx only: trust X-Forwarded-* from the proxy network; the API port is never published.
+CMD ["uvicorn", "clinicdesk.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000", \
+     "--proxy-headers", "--forwarded-allow-ips", "*", "--no-server-header", "--workers", "2"]
