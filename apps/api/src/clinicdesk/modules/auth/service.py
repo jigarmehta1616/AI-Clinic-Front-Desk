@@ -77,7 +77,6 @@ async def request_otp(
             )
         )
         await s.commit()
-        print(f"OTP for {phone}: {code}")  # TODO: remove this debug print
     await sender.send(phone, code)
 
 
